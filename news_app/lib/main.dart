@@ -39,12 +39,17 @@ class _HomePageState extends State<HomePage> {
       body: FutureBuilder(
         future: client.getArticle(),
         builder: (BuildContext context, AsyncSnapshot<List<Article>> snapshot) {
+          //let's check if we got a response or not
           if (snapshot.hasData) {
+            //Now let's make a list of articles
             List<Article>? articles = snapshot.data;
             return ListView.builder(
-                itemCount: articles?.length,
-                itemBuilder: (context, index) =>
-                    ListTile(title: Text(articles![index].title)));
+              //Now let's create our custom List tile
+              itemCount: articles?.length,
+              itemBuilder: (context, index) => ListTile(
+                title: Text(articles![index].title),
+              ),
+            );
           }
           return Center(
             child: CircularProgressIndicator(),
