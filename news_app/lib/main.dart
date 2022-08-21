@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:news_app/model/article_model.dart';
 import 'package:news_app/services/api_service.dart';
+import 'package:news_app/components/customListTile.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,23 +34,25 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("News Portal", style: TextStyle(color: Colors.black)),
+        title: Text(
+          "SPOOKY",
+          style: GoogleFonts.creepster(
+            fontSize: 40.0,
+            color: Colors.white,
+          ),
+        ),
         centerTitle: true,
-        backgroundColor: Colors.greenAccent,
+        backgroundColor: Colors.black,
       ),
       body: FutureBuilder(
         future: client.getArticle(),
         builder: (BuildContext context, AsyncSnapshot<List<Article>> snapshot) {
-          //let's check if we got a response or not
           if (snapshot.hasData) {
-            //Now let's make a list of articles
             List<Article>? articles = snapshot.data;
             return ListView.builder(
-              //Now let's create our custom List tile
               itemCount: articles?.length,
-              itemBuilder: (context, index) => ListTile(
-                title: Text(articles![index].title),
-              ),
+              itemBuilder: (context, index) =>
+                  customListTile(articles![index], context),
             );
           }
           return Center(
