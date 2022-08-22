@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:news_app/model/article_model.dart';
 
 class ArticlePage extends StatelessWidget {
@@ -9,6 +10,7 @@ class ArticlePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(article.title),
+        backgroundColor: Colors.black,
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
@@ -40,7 +42,7 @@ class ArticlePage extends StatelessWidget {
                           image: NetworkImage(
                               'https://source.unsplash.com/weekly?coding'),
                           fit: BoxFit.cover),
-                      borderRadius: BorderRadius.circular(12.0),
+                      borderRadius: BorderRadius.circular(40.0),
                     ),
                   ),
             SizedBox(
@@ -49,27 +51,45 @@ class ArticlePage extends StatelessWidget {
             Container(
               padding: EdgeInsets.all(16.0),
               decoration: BoxDecoration(
-                color: Colors.cyan.shade400,
+                color: Colors.black,
+                border: Border.all(
+                  width: 4,
+                  color: Colors.red,
+                ),
                 borderRadius: BorderRadius.circular(30.0),
               ),
               child: Text(
                 article.source.name,
-                style: TextStyle(
+                style: GoogleFonts.lobster(
                   color: Colors.white,
-                  fontSize: 20,
+                  fontSize: 15,
                 ),
               ),
             ),
             SizedBox(
-              height: 8.0,
+              height: 12.0,
             ),
             Text(
-              article.description,
-              style: TextStyle(
+              article.author,
+              style: GoogleFonts.cookie(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 23.0,
+                  color: Colors.blue),
+            ),
+            Text(
+              article.publishedAt,
+              style: GoogleFonts.lobster(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 17.0,
+                  color: Colors.red),
+            ),
+            Text(
+              article.content,
+              style: GoogleFonts.cookie(
                 fontWeight: FontWeight.bold,
-                fontSize: 16.0,
+                fontSize: 26.0,
               ),
-            )
+            ),
           ],
         ),
       ),
